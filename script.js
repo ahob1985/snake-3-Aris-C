@@ -1,5 +1,6 @@
-// Author:
+// Author: Aris Chec
 
+//https://teachablemachine.withgoogle.com/models/k-uODmS53/ 
 // Global UI Variables
 let canvasDiv;
 let canvas;
