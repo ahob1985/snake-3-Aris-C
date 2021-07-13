@@ -1,6 +1,7 @@
 // Author: Aris Chec
 
 //https://teachablemachine.withgoogle.com/models/k-uODmS53/ 
+
 // Global UI Variables
 let canvasDiv;
 let canvas;
@@ -38,14 +39,17 @@ function setup() {
   resetButton.parent(buttonDiv);
   buttonDiv.style("display", "none");
   // Set the resolution to 20. Play with this later if you want.
-  resolution = 20;
+  resolution = 19;
   // Scaled width and height are width / resolution, height / resolution
   scaledWidth = floor(width / resolution);
   scaledHeight = floor(height / resolution);
   // Set the game's framerate to 5 (or whatever you prefer)
-  frameRate(5);
+  frameRate(2);
   // Load the sound classifier
-
+  let options = {
+  probabilityThreshold: 0.8
+};
+soundClassifier = ml5.soundClassifier("https://teachablemachine.withgoogle.com/models/k-uODmS53/model.json", options, modelReady);
 }
 
 function draw() {
@@ -111,6 +115,9 @@ function resetGame() {
 }
 
 function modelReady() {
+  soundClassifier.classify(gotResults);
+  isModelReady = true;
+  resetGame();
 
 }
 
